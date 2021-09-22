@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class BinaryTree<T extends Comparable<T>> {
 
+	private BinaryTreeNode root;
+
 	private class BinaryTreeNode {
 		BinaryTreeNode(T value) {
 			this.value = value;
@@ -12,9 +14,7 @@ public class BinaryTree<T extends Comparable<T>> {
 		BinaryTreeNode left;
 		BinaryTreeNode right;
 	}
-	
-	private BinaryTreeNode root;
-	
+		
 	BinaryTree(T[] inputArray) {
 		if(inputArray == null) return;
 		if(inputArray.length == 0) return;
@@ -33,6 +33,42 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 	
+/********************************************************************************************************
+										PUBLIC METHODS
+********************************************************************************************************/
+	
+	public T LCA(T val1, T val2) {
+		ArrayList<T> pathOne = new ArrayList<T>();
+		ArrayList<T> pathTwo = new ArrayList<T>();
+		BinaryTreeNode a = search(root, val1, pathOne);
+		BinaryTreeNode b = search(root, val2, pathTwo);
+		
+		if(a == null) {
+			System.out.println(val1 + " does not exist in the tree!");
+			return null;
+		}
+		if(b == null) {
+			System.out.println(val2 + " does not exist in the tree!");
+			return null;
+		}
+		
+		for(int i = 0; i < pathOne.size(); i++) 
+			if(!pathTwo.contains(pathOne.get(i))) 
+				return pathOne.get(i - 1);
+		
+		return null;
+	}
+	
+	public void printTree() 
+	{
+		System.out.println(print(root, ""));
+	}
+	
+	
+/********************************************************************************************************
+										PRIVATE METHODS
+********************************************************************************************************/
+	
 	private void add(T value) {
 		BinaryTreeNode node = root;
 		while(true) {
@@ -41,42 +77,40 @@ public class BinaryTree<T extends Comparable<T>> {
 			{
 				if(node.left == null) {
 					node.left = new BinaryTreeNode(value);
-					break;
+					return;
 				}
 				else node = node.left;
 			}
 			else {
 				if(node.right == null) {
 					node.right = new BinaryTreeNode(value);
-					break;
+					return;
 				}
 				else node = node.right;
 			}
 		}
 	}
 	
-	
-	public BinaryTreeNode search(T value) {
-		return search(root, value);
-	}
-	
-	private BinaryTreeNode search(BinaryTreeNode node, T value) {
+	private BinaryTreeNode search(BinaryTreeNode node, T value, ArrayList<T> path) {
 		if(node == null) return null;
+		if(path != null) path.add(node.value);
 		
-		switch(node.value.compareTo(value))
+		switch(sign(node.value.compareTo(value)))
 		{
 			case  0: return node;
-			case  1: return search(node.right, value);
-			case -1: return search(node.left, value);
+			case  1: return search(node.right, value, path);
+			case -1: return search(node.left, value, path);
 			default: return null;
 		}
 	}
 	
-	public void printTree() 
+	private int sign(int num)
 	{
-		System.out.println(print(root, ""));
+		if(num > 0) return 1;
+		if(num < 0) return -1;
+		return 0;
 	}
-
+	
 	private String print(BinaryTreeNode node, String prefix)
 	{
 		if(node == null) return prefix + "-null\n";
