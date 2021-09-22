@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class ReadFile<T>{
+public class ReadFile {
 	private BufferedReader file;
 	private FileReader fileReader;
 	ReadFile(String filename)
@@ -16,12 +16,11 @@ public class ReadFile<T>{
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public ArrayList<T> read() {
+	public ArrayList<String> read() {
 		try {
-			T line;
-			ArrayList<T> list = new ArrayList<T>();
-			while((line = (T) file.readLine()) != null) {
+			String line;
+			ArrayList<String> list = new ArrayList<String>();
+			while((line = file.readLine()) != null) {
 				list.add(line);
 			}
 			file.close();
