@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class BinaryTree<T extends Comparable<T>> {
 
 	private BinaryTreeNode root;
+	private int size = 0;
 
 	private class BinaryTreeNode {
 		BinaryTreeNode(T value) {
@@ -19,17 +20,21 @@ public class BinaryTree<T extends Comparable<T>> {
 		if(inputArray == null) return;
 		if(inputArray.length == 0) return;
 		root = new BinaryTreeNode(inputArray[0]);
+		size = 1;
 		for(int i = 1; i < inputArray.length; i++) {
 			add(inputArray[i]);
+			size++;
 		}
 	}
 	
 	BinaryTree(ArrayList<T> inputArray) {
 		if(inputArray == null) return;
 		if(inputArray.size() == 0) return;
+		size = 1;
 		root = new BinaryTreeNode(inputArray.get(0));
 		for(int i = 1; i < inputArray.size(); i++) {
 			add(inputArray.get(i));
+			size++;
 		}
 	}
 	
@@ -64,6 +69,9 @@ public class BinaryTree<T extends Comparable<T>> {
 		System.out.println(print(root, ""));
 	}
 	
+	public int size() {
+		return size;
+	}
 	
 /********************************************************************************************************
 										PRIVATE METHODS
@@ -73,6 +81,13 @@ public class BinaryTree<T extends Comparable<T>> {
 		BinaryTreeNode node = root;
 		while(true) {
 			int comparison = node.value.compareTo(value);
+			
+			if(comparison == 0) 
+			{
+				System.out.println("Duplicate value: " + value);
+				return;
+			}
+			
 			if(comparison < 0) 
 			{
 				if(node.left == null) {

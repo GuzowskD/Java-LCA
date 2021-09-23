@@ -12,7 +12,7 @@ public class ReadFile {
 			file = new BufferedReader(fileReader);
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("File not found or could not be opened.");
 		}
 	}
 	
@@ -27,7 +27,7 @@ public class ReadFile {
 			fileReader.close();
 			return list;
 		}catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("Cannot read buffer.");
 		}
 		return null;
 	}
