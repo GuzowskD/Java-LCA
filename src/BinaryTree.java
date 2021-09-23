@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
-public class BinaryTree<T extends Comparable<T>> {
+public class BinaryTree<T extends Comparable<T>> 
+{
 
 	private BinaryTreeNode root;
 	private int size = 0;
 
-	private class BinaryTreeNode {
+	private class BinaryTreeNode 
+	{
 		BinaryTreeNode(T value) {
 			this.value = value;
 			left = null;
@@ -16,22 +18,26 @@ public class BinaryTree<T extends Comparable<T>> {
 		BinaryTreeNode right;
 	}
 		
-	BinaryTree(T[] inputArray) {
+	BinaryTree(T[] inputArray) 
+	{
 		if(inputArray == null) return;
 		if(inputArray.length == 0) return;
 		root = new BinaryTreeNode(inputArray[0]);
 		size = 1;
-		for(int i = 1; i < inputArray.length; i++) {
+		for(int i = 1; i < inputArray.length; i++) 
+		{
 			add(inputArray[i]);
 		}
 	}
 	
-	BinaryTree(ArrayList<T> inputArray) {
+	BinaryTree(ArrayList<T> inputArray) 
+	{
 		if(inputArray == null) return;
 		if(inputArray.size() == 0) return;
 		size = 1;
 		root = new BinaryTreeNode(inputArray.get(0));
-		for(int i = 1; i < inputArray.size(); i++) {
+		for(int i = 1; i < inputArray.size(); i++) 
+		{
 			add(inputArray.get(i));
 		}
 	}
@@ -40,17 +46,20 @@ public class BinaryTree<T extends Comparable<T>> {
 										PUBLIC METHODS
 ********************************************************************************************************/
 	
-	public T LCA(T val1, T val2) {
+	public T LCA(T val1, T val2) 
+	{
 		ArrayList<T> pathOne = new ArrayList<T>();
 		ArrayList<T> pathTwo = new ArrayList<T>();
 		BinaryTreeNode a = search(root, val1, pathOne);
 		BinaryTreeNode b = search(root, val2, pathTwo);
 		
-		if(a == null) {
+		if(a == null) 
+		{
 			System.out.println(val1 + " does not exist in the tree!");
 			return null;
 		}
-		if(b == null) {
+		if(b == null) 
+		{
 			System.out.println(val2 + " does not exist in the tree!");
 			return null;
 		}
@@ -67,7 +76,8 @@ public class BinaryTree<T extends Comparable<T>> {
 		System.out.println(print(root, ""));
 	}
 	
-	public int size() {
+	public int size() 
+	{
 		return size;
 	}
 	
@@ -75,7 +85,8 @@ public class BinaryTree<T extends Comparable<T>> {
 										PRIVATE METHODS
 ********************************************************************************************************/
 	
-	private void add(T value) {
+	private void add(T value) 
+	{
 		BinaryTreeNode node = root;
 		while(true) {
 			int comparison = node.value.compareTo(value);
@@ -88,7 +99,8 @@ public class BinaryTree<T extends Comparable<T>> {
 			
 			if(comparison < 0) 
 			{
-				if(node.left == null) {
+				if(node.left == null) 
+				{
 					node.left = new BinaryTreeNode(value);
 					size++;
 					return;
@@ -96,7 +108,8 @@ public class BinaryTree<T extends Comparable<T>> {
 				else node = node.left;
 			}
 			else {
-				if(node.right == null) {
+				if(node.right == null) 
+				{
 					node.right = new BinaryTreeNode(value);
 					size++;
 					return;
@@ -106,7 +119,8 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 	}
 	
-	private BinaryTreeNode search(BinaryTreeNode node, T value, ArrayList<T> path) {
+	private BinaryTreeNode search(BinaryTreeNode node, T value, ArrayList<T> path) 
+	{
 		if(node == null) return null;
 		if(path != null) path.add(node.value);
 		
@@ -129,6 +143,6 @@ public class BinaryTree<T extends Comparable<T>> {
 	private String print(BinaryTreeNode node, String prefix)
 	{
 		if(node == null) return prefix + "-null\n";
-		return prefix + "-" + node.value + "\n" + print(node.left, prefix + " |") + print(node.right, prefix + "  ") ;
+		return prefix + "-" + node.value + "\n" + print(node.left, prefix + " |") + print(node.right, prefix + "  ");
 	}
 }
