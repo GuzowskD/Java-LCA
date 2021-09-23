@@ -12,6 +12,7 @@ public class LowestCommonAncestor {
 		BinaryTree<String> bt = new BinaryTree<String>(file.read());
 		if(bt.size() == 0) {
 			System.out.println("Tree could not be constructed. Program exited.");
+			input.close();
 			return;
 		}
 		
@@ -24,9 +25,10 @@ public class LowestCommonAncestor {
 			userCommand = input.nextLine();
 			if(!userCommand.equalsIgnoreCase("exit")) {
 				String[] values = userCommand.split(":");
-				System.out.println("LCA(" + values[0] + ", " + values[1] + ") = " + bt.LCA( values[0], values[1]) + ".\n");
+				System.out.println("LCA(" + values[0] + ", " + values[1] + ") = " + bt.LCA(values[0], values[1]) + ".\n");
 			}
 		}
+		input.close();
 		System.out.println("Program finished.");
 	}
 }

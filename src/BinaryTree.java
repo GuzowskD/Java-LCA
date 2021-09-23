@@ -23,7 +23,6 @@ public class BinaryTree<T extends Comparable<T>> {
 		size = 1;
 		for(int i = 1; i < inputArray.length; i++) {
 			add(inputArray[i]);
-			size++;
 		}
 	}
 	
@@ -34,7 +33,6 @@ public class BinaryTree<T extends Comparable<T>> {
 		root = new BinaryTreeNode(inputArray.get(0));
 		for(int i = 1; i < inputArray.size(); i++) {
 			add(inputArray.get(i));
-			size++;
 		}
 	}
 	
@@ -92,6 +90,7 @@ public class BinaryTree<T extends Comparable<T>> {
 			{
 				if(node.left == null) {
 					node.left = new BinaryTreeNode(value);
+					size++;
 					return;
 				}
 				else node = node.left;
@@ -99,6 +98,7 @@ public class BinaryTree<T extends Comparable<T>> {
 			else {
 				if(node.right == null) {
 					node.right = new BinaryTreeNode(value);
+					size++;
 					return;
 				}
 				else node = node.right;
