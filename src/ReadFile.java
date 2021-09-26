@@ -16,7 +16,7 @@ public class ReadFile
 		}
 		catch(Exception e) 
 		{
-			System.out.println("File not found or could not be opened.");
+			System.err.println("Error: File not found or could not be opened.");
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class ReadFile
 			return list;
 		}catch(Exception e) 
 		{
-			System.out.println("Cannot read buffer.");
+			System.err.println("Error: Cannot read buffer.");
 		}
 		return null;
 	}

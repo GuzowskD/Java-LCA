@@ -52,7 +52,7 @@ public class BinaryTree<T extends Comparable<T>>
 		ArrayList<T> pathTwo = new ArrayList<T>();
 		BinaryTreeNode a = search(root, val1, pathOne);
 		BinaryTreeNode b = search(root, val2, pathTwo);
-		
+
 		if(a == null) 
 		{
 			System.out.println(val1 + " does not exist in the tree!");
@@ -63,12 +63,13 @@ public class BinaryTree<T extends Comparable<T>>
 			System.out.println(val2 + " does not exist in the tree!");
 			return null;
 		}
+		if(a == b) return a.value; //Inputs were identical
 		
-		for(int i = 0; i < pathOne.size(); i++) 
+		for(int i = 0; i < pathOne.size(); i++)
 			if(!pathTwo.contains(pathOne.get(i))) 
-				return pathOne.get(i - 1);
+				return pathOne.get(i - 1); 
 		
-		return null;
+		return a.value; //Path 1 was shorter -> LCA = last value of Path 1
 	}
 	
 	public void printTree() 

@@ -8,13 +8,13 @@ public class LowestCommonAncestor
 	public static void main(String[] args) 
 	{
 		Scanner input = new Scanner(System.in);
-		System.out.print("Enter the location of your input file \n(or press Enter to use the default /dep/input.txt file. Eclipse only) >> ");
+		System.out.println("Enter the location of your input file (or press Enter to use the default /dep/input.txt file. Eclipse only).");
 		String filename = input.nextLine();
 		ReadFile file = new ReadFile(filename.length() > 0 ? filename : filepath);
 		BinaryTree<String> bt = new BinaryTree<String>(file.read());
 		if(bt.size() == 0) 
 		{
-			System.out.println("Tree could not be constructed. Program exited.");
+			System.err.println("Tree could not be constructed. Program exited.");
 			input.close();
 			return;
 		}
@@ -25,7 +25,7 @@ public class LowestCommonAncestor
 		System.out.println("Type 'exit' to close the program at any time.");
 		while(!userCommand.equalsIgnoreCase("exit")) 
 		{
-			System.out.print("Enter your 2 values, separated by a colon ':' >> ");
+			System.out.print("Enter your 2 values, separated by a colon ':' > ");
 			userCommand = input.nextLine();
 			if(!userCommand.equalsIgnoreCase("exit")) 
 			{
@@ -34,7 +34,7 @@ public class LowestCommonAncestor
 				{
 					System.out.println("LCA(" + values[0] + ", " + values[1] + ") = " + bt.LCA(values[0], values[1]) + ".\n");
 				}
-				else System.out.println("Error: Expected 2 values separated by a colon, received " + values.length + ".");
+				else System.err.println("Error: Expected 2 values separated by a colon, received " + (values.length == 1 ? (values[0].length() == 0 ? 0 : 1) : values.length) + ".");
 			}
 		}
 		input.close();
