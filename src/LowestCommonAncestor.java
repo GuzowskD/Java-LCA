@@ -7,6 +7,7 @@ public class LowestCommonAncestor
 	
 	public static void main(String[] args) 
 	{
+
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the location of your input file (or press Enter to use the default /dep/input.txt file. Eclipse only).");
 		String filename = input.nextLine();
@@ -20,7 +21,7 @@ public class LowestCommonAncestor
 		}
 		
 		System.out.println("Your tree:");
-		bt.printTree();
+		System.out.println(bt.shape());
 		String userCommand = "";
 		System.out.println("Type 'exit' to close the program at any time.");
 		while(!userCommand.equalsIgnoreCase("exit")) 
