@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class LowestCommonAncestor 
 {
 	
-	public static final String filepath = "src/../dep/input.txt";
+	public static final String filepath = "../dep/input.txt";
 	
 	public static void main(String[] args) 
 	{
 
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter the location of your input file (or press Enter to use the default /dep/input.txt file. Eclipse only).");
+		System.out.println("Enter the location of your input file: ");
 		String filename = input.nextLine();
 		ReadFile file = new ReadFile(filename.length() > 0 ? filename : filepath);
 		BinaryTree<String> bt = new BinaryTree<String>(file.read());
