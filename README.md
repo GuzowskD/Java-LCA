@@ -19,9 +19,13 @@ make
 ## 3.b Run project manually
 ```
 javac src/LowestCommonAncestor.java src/ReadFile.java src/BinaryTree.java -d ./bin
-cd ./bin & java LowestCommonAncestor
 ```
-
+```
+cd ./bin
+```
+```
+java LowestCommonAncestor
+```
 ### Instructions when executing
 1. If using the terminal to test the program, you may press Enter to use the default input file.
 2. If using Eclipse to test the program, the file path to the default input is __src/../dep/input.txt__.
