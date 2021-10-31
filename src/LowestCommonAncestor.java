@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class LowestCommonAncestor 
@@ -7,7 +10,6 @@ public class LowestCommonAncestor
 	
 	public static void main(String[] args) 
 	{
-
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the location of your input file: ");
 		String filename = input.nextLine();
