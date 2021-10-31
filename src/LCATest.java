@@ -200,7 +200,15 @@ public class LCATest
 		};
 		res4 = new HashSet<Integer>();
 		res4.add(4);
-		assertEquals("LCA with multiple connections of same length", res4, new DirectedAcyclicGraph<Integer>(edges5).LCA(5, 6));
-
+		assertEquals("LCA with multiple connections of same length but only deepest wanted", res4, new DirectedAcyclicGraph<Integer>(edges5).LCA(5, 6));
+		String[][] edges6 = {
+				{"A", "B"},	
+				{"B", "C"},	
+				{"C", "D"},	
+				{"D", "E"},	
+				{"E", "A"},	
+				{"C", "E"},	
+		};
+		assertEquals("LCA when a cyclic graph passed", new HashSet<String>(), new DirectedAcyclicGraph<String>(edges6).LCA("C", "A"));
 	}
 }
