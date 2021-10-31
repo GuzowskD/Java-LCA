@@ -1,4 +1,4 @@
-# Java-LCA
+# Java-LCA (DAG)
 
 #### Requirements
 - Java installed.
